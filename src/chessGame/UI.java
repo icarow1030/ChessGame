@@ -1,6 +1,7 @@
 package chessGame;
 
 import chess.ChessPiece;
+import chess.Color;
 
 /**
  * This class is responsible for the User Interface (UI) of the chess game.
@@ -37,11 +38,19 @@ public class UI {
      * @param piece ChessPiece object to be printed.
      */
     private static void printPiece(ChessPiece piece, int square) {
+        String red = "\033[0;31m";    // RED
+        String blue = "\033[0;34m";   // BLUE
+        String reset = "\033[0m";
         if(piece == null) {
             System.out.print("- ");
         }
         else {
-            System.out.print(piece + "  ");
+            if(piece.getColor() == Color.BLACK) {
+                System.out.print(red + piece + "  " + reset);
+            }
+            else {
+                System.out.print(blue + piece + "  " + reset);
+            }
         }
         System.out.print(" ");
     }
