@@ -1,5 +1,7 @@
 package boardGame;
 
+import chess.ChessPiece;
+
 public class Board {
 
     private int rows;
@@ -27,4 +29,24 @@ public class Board {
     public Piece piece(Position position) {
         return pieces[position.getX()][position.getY()];
     }
+
+    public void placePiece(Piece piece, Position position) {
+        if(!hasPiece(position)) {
+            try {
+                this.pieces[position.getX()][position.getY()] = piece;
+                piece.position = position;
+            } catch(IndexOutOfBoundsException e) {
+                System.out.println("Out of Bounds");
+            }
+        }
+        else {
+            System.out.println("Occupied Position!");
+        }
+
+    }
+
+    public boolean hasPiece(Position position) {
+        return pieces[position.getX()][position.getY()] != null;
+    }
+
 }

@@ -2,12 +2,12 @@ package exceptions;
 
 import java.io.Serial;
 
-public class BoardException extends Exception {
+public class ChessException extends Exception {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public BoardException(String msg) {
+    public ChessException(String msg) {
         super(msg);
     }
 }

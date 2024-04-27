@@ -12,8 +12,14 @@ public class ChessPiece extends Piece {
         this.color = color;
     }
 
+
     public Color getColor() {
         return this.color;
+    }
+
+    @Override
+    public String toString() {
+        return "♟";
     }
 
 }
