@@ -1,0 +1,20 @@
+/* ChessPiece sourcePiece = null;
+        ChessPiece capturedPiece = null;
+        boolean pieceOnTarget = false;
+        try {
+            validateSourcePosition(source); // Checks if there is a piece on source. If there isn't, throws a exception
+            System.out.println("There is a piece! YEAH!"); // If there is, continues here
+            sourcePiece = (ChessPiece) board.piece(source.toPosition()); // Catches the sourcePiece
+            if(board.hasPiece(target.toPosition())) { //
+                pieceOnTarget = true;
+            }
+        } catch(BoardException e) {
+            System.out.println(e.getMessage());
+            throw new BoardException(e.getMessage());
+        }
+
+        if(pieceOnTarget) {
+            capturedPiece = (ChessPiece) board.removePiece(target.toPosition());
+        }
+        board.placePiece(sourcePiece, target);
+        return capturedPiece; */

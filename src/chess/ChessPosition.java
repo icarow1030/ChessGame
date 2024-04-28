@@ -1,15 +1,26 @@
 package chess;
 
 import boardGame.Position;
-import exceptions.BoardException;
 import exceptions.ChessException;
-import boardGame.Board;
 
+/**
+ * This class represents a position on a chess board.
+ * It extends the Position class and adds chess-specific functionality.
+ */
 public class ChessPosition extends Position {
 
+    // The column of the chess position (a-h)
     private char column;
+    // The row of the chess position (1-8)
     private int row;
 
+    /**
+     * Constructor for the ChessPosition class.
+     * It initializes the x and y fields with the provided values and converts them to a chess position.
+     * @param x The x-coordinate of the position.
+     * @param y The y-coordinate of the position.
+     * @throws ChessException If the position is invalid.
+     */
     public ChessPosition(int x, int y) throws ChessException {
         super();
         try {
@@ -21,6 +32,13 @@ public class ChessPosition extends Position {
         setValues(x, y);
     }
 
+    /**
+     * Constructor for the ChessPosition class.
+     * It initializes the column and row fields with the provided values and converts them to a position.
+     * @param column The column of the chess position (a-h).
+     * @param row The row of the chess position (1-8).
+     * @throws ChessException If the position is invalid.
+     */
     public ChessPosition(char column, int row) throws ChessException {
         super();
         try {
@@ -32,10 +50,18 @@ public class ChessPosition extends Position {
         this.column = column;
     }
 
+    /**
+     * Getter for the row field.
+     * @return The row of the chess position (1-8).
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     * Getter for the column field.
+     * @return The column of the chess position (a-h).
+     */
     public char getColumn() {
         return column;
     }

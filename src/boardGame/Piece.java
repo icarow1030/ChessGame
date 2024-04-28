@@ -20,4 +20,9 @@ public abstract class Piece {
         return this.board;
     }
 
+    /**
+     * @return boolean matrix, where 'true' is a possible move, and 'false' is an impossible move
+     */
+
+
 }
