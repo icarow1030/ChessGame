@@ -77,7 +77,7 @@ public class Board {
             return pieces[position.getX()][position.getY()];
         }
         else {
-            throw new BoardException("Error getting a piece: Position " + position + "is out of bounds");
+            throw new BoardException("Error getting a piece: Position " + position + " is out of bounds");
         }
     }
 

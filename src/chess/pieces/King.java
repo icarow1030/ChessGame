@@ -11,11 +11,20 @@ public class King extends ChessPiece {
     public King(Board board, Color color) {
         super(board, color);
         if(color == Color.WHITE) {
-            this.symbol = "♔";
+            this.symbol = "R";
         }
         else {
-            this.symbol = "♚";
+            this.symbol = "R";
         }
+    }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        boolean[][] matrixMoves = new boolean[getBoard().getRows()][getBoard().getColumns()];
+
+
+
+        return matrixMoves;
     }
 
     @Override

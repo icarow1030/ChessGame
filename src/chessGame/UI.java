@@ -15,6 +15,11 @@ public class UI {
     public static final String blue = "\033[0;34m";   // BLUE
     public static final String reset = "\033[0m";
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static ChessPosition readChessPosition() throws NumberFormatException, IllegalArgumentException {
         try {
             String chessPosition = UserInput.readString();
@@ -48,7 +53,7 @@ public class UI {
             }
             System.out.println();
         }
-        System.out.println("\n     a  b  c  d  e  f  g  h");
+        System.out.println("\n     a  b  c  d  e  f  g  h");
 
     }// This is a board
 
@@ -61,14 +66,14 @@ public class UI {
      */
     private static void printPiece(ChessPiece piece, int square) {
         if(piece == null) {
-            System.out.print("- ");
+            System.out.print(" -");
         }
         else {
             if(piece.getColor() == Color.BLACK) {
-                System.out.print(red + piece + "  " + reset);
+                System.out.print(" " + red + piece + reset);
             }
             else {
-                System.out.print(blue + piece + "  " + reset);
+                System.out.print(" " + blue + piece + reset);
             }
         }
         System.out.print(" ");

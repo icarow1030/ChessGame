@@ -11,11 +11,17 @@ public class Knight extends ChessPiece {
     public Knight(Board board, Color color) {
         super(board, color);
         if(color == Color.WHITE) {
-            this.symbol = "♘";
+            this.symbol = "K";
         }
         else {
-            this.symbol = "♞";
+            this.symbol = "K";
         }
+    }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        boolean[][] matrixMoves = new boolean[getBoard().getRows()][getBoard().getColumns()];
+        return matrixMoves;
     }
 
     @Override

@@ -45,6 +45,9 @@ public class Position {
         return this.y;
     }
 
+    public void setX(int x) { this.x = x; }
+    public void setY(int y) { this.y = y; }
+
     /**
      * This method sets the x and y fields to the provided values.
      * @param x The new x-coordinate of the position.
