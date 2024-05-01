@@ -24,33 +24,101 @@ public class Pawn extends ChessPiece {
     public boolean[][] possibleMoves() {
         boolean[][] matrixMoves = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
-        ChessPosition p = new ChessPosition(0, 0);
+        ChessPosition p = new ChessPosition(position.getX(), position.getY());
 
-        // Initial Movement
-        p.setValues(position.getX(), position.getY());
-        if(movementCount == 0) {
-            if(!getBoard().hasPiece(new Position(p.getX() - 1, p.getY()))) {
-                matrixMoves[p.getX() - 1][p.getY()] = true;
-            }
-            if(!getBoard().hasPiece(new Position(p.getX() - 2, p.getY()))) {
-                matrixMoves[p.getX() - 2][p.getY()] = true;
-            }
-        }
-        else {
-            p.setX(position.getX() - 1);
-            if(!getBoard().hasPiece(p)) {
+        // Initial Movement - White
+        if(getColor() == Color.WHITE) {
+            p.setValues(position.getX() - 1, position.getY());
+            if(getBoard().positionExists(p) && !getBoard().hasPiece(p)) {
                 matrixMoves[p.getX()][p.getY()] = true;
+
+                // Double forward move
+                p.setValues(position.getX() - 2, position.getY());
+                if(movementCount == 0 && getBoard().positionExists(p) && !getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
             }
+
+            // Diagonal captures
             p.setValues(position.getX() - 1, position.getY() - 1);
-            if(getBoard().hasPiece(p)) {
+            if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
                 matrixMoves[p.getX()][p.getY()] = true;
             }
             p.setValues(position.getX() - 1, position.getY() + 1);
-            if(getBoard().hasPiece(p)) {
+            if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+                matrixMoves[p.getX()][p.getY()] = true;
+            }
+        }
+        // Initial Movement - Black
+        else {
+            p.setValues(position.getX() + 1, position.getY());
+            if(getBoard().positionExists(p) && !getBoard().hasPiece(p)) {
+                matrixMoves[p.getX()][p.getY()] = true;
+
+                // Double forward move
+                p.setValues(position.getX() + 2, position.getY());
+                if(movementCount == 0 && getBoard().positionExists(p) && !getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+            }
+
+            // Diagonal captures
+            p.setValues(position.getX() + 1, position.getY() - 1);
+            if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+                matrixMoves[p.getX()][p.getY()] = true;
+            }
+            p.setValues(position.getX() + 1, position.getY() + 1);
+            if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
                 matrixMoves[p.getX()][p.getY()] = true;
             }
         }
 
+        // Initial Movement - White
+        /* p.setValues(position.getX(), position.getY());
+        if(movementCount == 0) {
+            if(!getBoard().hasPiece(new Position(p.getX() - 1, p.getY())) && getColor() == Color.WHITE) {
+                matrixMoves[p.getX() - 1][p.getY()] = true;
+            }
+            if(!getBoard().hasPiece(new Position(p.getX() - 2, p.getY())) && getColor() == Color.WHITE) {
+                matrixMoves[p.getX() - 2][p.getY()] = true;
+            }
+            if(!getBoard().hasPiece(new Position(p.getX() + 1, p.getY())) && getColor() == Color.BLACK) {
+                matrixMoves[p.getX() + 1][p.getY()] = true;
+            }
+            if(!getBoard().hasPiece(new Position(p.getX() + 2, p.getY())) && getColor() == Color.BLACK) {
+                matrixMoves[p.getX() + 2][p.getY()] = true;
+            }
+        }
+        else {
+            if(getColor() == Color.WHITE) {
+                p.setX(position.getX() - 1);
+                if(!getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+                p.setValues(position.getX() - 1, position.getY() - 1);
+                if(getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+                p.setValues(position.getX() - 1, position.getY() + 1);
+                if(getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+            }
+            else {
+                p.setX(position.getX() + 1);
+                if(!getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+                p.setValues(position.getX() + 1, position.getY() + 1);
+                if(getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+                p.setValues(position.getX() + 1, position.getY() - 1);
+                if(getBoard().hasPiece(p)) {
+                    matrixMoves[p.getX()][p.getY()] = true;
+                }
+            }
+        } */
         return matrixMoves;
     }
 

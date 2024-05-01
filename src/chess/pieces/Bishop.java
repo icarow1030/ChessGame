@@ -23,7 +23,7 @@ public class Bishop extends ChessPiece {
     public boolean[][] possibleMoves() {
         boolean[][] matrixMoves = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
-        ChessPosition p = new ChessPosition(0, 0);
+        ChessPosition p = new ChessPosition(position.getX(), position.getY());
 
         // Left-above
         p.setValues(position.getX() - 1, position.getY() - 1);
@@ -31,7 +31,9 @@ public class Bishop extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setValues(p.getX() - 1, p.getY() - 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Left-down
         p.setValues(position.getX() + 1, position.getY() - 1);
@@ -39,7 +41,9 @@ public class Bishop extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setValues(p.getX() + 1, p.getY() - 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Right-down
         p.setValues(position.getX() + 1, position.getY() + 1);
@@ -47,7 +51,9 @@ public class Bishop extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setValues(p.getX() + 1, p.getY() + 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Right-above
         p.setValues(position.getX() - 1, position.getY() + 1);
@@ -55,7 +61,9 @@ public class Bishop extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setValues(p.getX() - 1, p.getY() + 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         return matrixMoves;
     }

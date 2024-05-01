@@ -11,30 +11,32 @@ public class Chess {
 
         ChessMatch match = new ChessMatch();
 
-        ArrayList<ChessPiece> capturedPieces = new ArrayList<>();
-
         do {
             try {
                 UI.clearScreen();
-                UI.printBoard(match.getPieces());
-                for(ChessPiece piece : capturedPieces) {
-                    System.out.print("[" + piece +"]");
-                }
+                UI.printMatch(match);
+                UI.printCapturedPieces(match.getCapturedPieces());
+                System.out.println();
                 System.out.print("Source > ");
                 ChessPosition sourcePosition = UI.readChessPosition();
+                if(sourcePosition == null) {
+                    return;
+                }
+                boolean[][] possibleMoves = match.possibleMoves(sourcePosition);
+                UI.clearScreen();
+                UI.printMatch(match, possibleMoves);
+                UI.printCapturedPieces(match.getCapturedPieces());
+
                 System.out.println(sourcePosition);
                 System.out.print("Target > ");
                 ChessPosition targetPosition = UI.readChessPosition();
                 System.out.println(targetPosition);
                 ChessPiece capturedPiece = match.performChessMove(sourcePosition, targetPosition);
-                if(capturedPiece != null) {
-                    capturedPieces.add(capturedPiece);
-                }
             } catch(RuntimeException e) {
                 System.out.println(e.getMessage());
+                UserInput.waitEnt();
             }
         } while(true);
-
 
     }
 }

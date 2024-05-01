@@ -33,7 +33,9 @@ public class Rook extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setX(p.getX() - 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Down Movement
         p.setValues(position.getX() + 1, position.getY());
@@ -41,7 +43,9 @@ public class Rook extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setX(p.getX() + 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Left Movement
         p.setValues(position.getX(), position.getY() - 1);
@@ -49,7 +53,9 @@ public class Rook extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setY(p.getY() - 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
         // Right Movement
         p.setValues(position.getX(), position.getY() + 1);
@@ -57,7 +63,9 @@ public class Rook extends ChessPiece {
             matrixMoves[p.getX()][p.getY()] = true;
             p.setY(p.getY() + 1);
         }
-        matrixMoves[p.getX()][p.getY()] = checkOpponentPiece(p);
+        if(getBoard().positionExists(p) && hasOpponentPiece(p)) {
+            matrixMoves[p.getX()][p.getY()] = true;
+        }
 
 
         return matrixMoves;

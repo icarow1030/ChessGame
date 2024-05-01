@@ -16,4 +16,9 @@ public class UserInput {
     public static String readString() {
         return input.next().trim().toLowerCase();
     }
+
+    public static void waitEnt() {
+        input.next();
+    }
+
 }
