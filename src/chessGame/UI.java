@@ -48,6 +48,9 @@ public class UI {
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
         System.out.println("Current Player: " + match.getCurrentPlayer());
+        if(match.getCheck()) {
+            System.out.println(match.getCurrentPlayer() + " IN CHECK!");
+        }
     }
 
     public static void printMatch(ChessMatch match) {
@@ -55,6 +58,9 @@ public class UI {
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
         System.out.println("Current Player: " + match.getCurrentPlayer());
+        if(match.getCheck()) {
+            System.out.println(match.getCurrentPlayer() + " IN CHECK!");
+        }
     }
 
     /**

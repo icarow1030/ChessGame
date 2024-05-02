@@ -34,6 +34,7 @@ public class Chess {
                 ChessPiece capturedPiece = match.performChessMove(sourcePosition, targetPosition);
             } catch(RuntimeException e) {
                 System.out.println(e.getMessage());
+                e.printStackTrace();
                 UserInput.waitEnt();
             }
         } while(true);
