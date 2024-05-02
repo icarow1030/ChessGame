@@ -37,7 +37,11 @@ public class Chess {
                 e.printStackTrace();
                 UserInput.waitEnt();
             }
-        } while(true);
-
+        } while(!match.getCheckMate());
+        UI.clearScreen();
+        UI.printMatch(match);
+        UI.printCapturedPieces(match.getCapturedPieces());
+        System.out.println("END OF THE GAME! C H E C K M A T E!");
+        System.out.println(match.getCurrentPlayer() + " WON!");
     }
 }

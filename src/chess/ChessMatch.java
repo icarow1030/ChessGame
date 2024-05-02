@@ -46,6 +46,7 @@ public class ChessMatch {
         return capturedPieces;
     }
     public boolean getCheck() { return check; }
+    public boolean getCheckMate() { return checkmate; }
 
     /**
      * Returns a matrix representation of the current state of the chess board.
@@ -92,7 +93,12 @@ public class ChessMatch {
         if(testCheck(opponent(currentPlayer))) {
             this.check = true;
         }
-        nextTurn();
+        if(testCheckMate(opponent(currentPlayer))) {
+            this.checkmate = true;
+        }
+        else {
+            nextTurn();
+        }
         return capturedPiece;
     }
 
@@ -164,6 +170,31 @@ public class ChessMatch {
             }
         }
         return false;
+    }
+
+    private boolean testCheckMate(Color color) {
+        if(!testCheck(color)) {
+            return false;
+        }
+        List<ChessPiece> allyPieces = piecesOnBoard.stream().filter(x -> x.getColor() == color).toList();
+        for(ChessPiece allyPiece : allyPieces) {
+            boolean[][] allyMoves = allyPiece.possibleMoves();
+            for(int i = 0; i < board.getRows(); i++) {
+                for(int j = 0; j < board.getColumns(); j++) {
+                    if(allyMoves[i][j]) {
+                        ChessPosition source = allyPiece.getChessPosition();
+                        ChessPosition target = new ChessPosition(i, j);
+                        ChessPiece capturedPieceTemp = makeMove(source, target);
+                        boolean testCheck = testCheck(color);
+                        undoMove(source, target, capturedPieceTemp);
+                        if(!testCheck) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     private Color opponent(Color color) {
